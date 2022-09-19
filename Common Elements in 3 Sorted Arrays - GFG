@@ -1,0 +1,26 @@
+ class Solution
+ {
+ public:    
+       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            //code here.
+            //here we use a map in which A's elements are used as key
+            //and B's and C's will be values 
+            //using binary_search we will find the common elements
+            vector<int> ans;
+            map<int,int> mp;   // for avoiding duplicates
+            
+            for(int i=0;i<n1;i++)
+            {
+                if(mp.find(A[i])==mp.end() && 
+                binary_search(B, B+n2, A[i]) && 
+                binary_search(C, C+n3, A[i]))
+                {
+                    ans.push_back(A[i]);
+                    mp[A[i]]++;
+                }
+            }
+            return ans;  
+            
+        }
+    };

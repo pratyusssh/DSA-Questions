@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+      // int dupe=0;
+      //   sort(nums.begin(),nums.end());
+      //   for(int i=0;i<nums.size()-1;i++){
+      //       if(nums[i]==nums[i+1]){
+      //           dupe = nums[i];
+      //           break;
+      //       }
+      //   }
+      //   return dupe;
+        //slowest solution above
+        
+        // initialise cnt vector of size nums with 0
+        
+        //hashing is use in the below solution. Fastest I can get.
+        vector<int> count(nums.size(),0);
+        int dupe =  0;
+		
+		// store the cnt of each value in the cnt vector
+        for(int i = 0; i<nums.size(); i++)
+        {
+            count[nums[i]]++;
+        }
+        
+        for(int i = 0; i<count.size(); i++)
+        {
+			// if cnt[i] > 1
+			// this means that element occur more than once in nums
+			// we have to return i
+            if(count[i] > 1)
+            {
+                dupe  = i;
+                break;
+            }
+        }
+        
+        return dupe;
+    }
+};
